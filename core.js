@@ -395,12 +395,7 @@ module.exports = rell = async (rell, m, msg, chatUpdate, store) => {
     const isOwner = [botNumber, ...owner]
       .map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net")
       .includes(m.sender);
-    async function checkPremiumStatus(sender) {
-      const aaaa = await cekPrem(sender);
-      return aaaa;
-    }
-    const premiumya = await rellmduser.findOne({ user: sender });
-    const isPremium = premiumya === null ? "false" : "true";
+    const isPremium = "false"
 
     expiredSewaCheck(rell, m, premium);
 
