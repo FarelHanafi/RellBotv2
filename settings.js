@@ -8,7 +8,7 @@ global.location = "indonesia"
 
 //global settings
 global.botname = 'Rell-MD'
-global.ownernumber = '62881026950162'
+global.ownernumber = ''
 global.ownername = 'Rell'
 global.websitex = "https://特別な人"
 global.wagc = "https://chat.whatsapp.com/JKzk65yY1b54uQujtmSQFg"
