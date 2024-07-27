@@ -6416,42 +6416,29 @@ ${resulw}`);
   case "ytaudio":
     {
       if (!text)
-        return reply(
-          `*Example:* ${
-            usedPrefix + command
-          } https://www.youtube.com/watch?v=xxxx`
-        );
-      try {
-        let audio = ytdl(text, { quality: "highestaudio" });
-        let inputFilePath = "./trash/music.webm";
-        let outputFilePath = "./trash/music.mp3";
-        audio
-          .pipe(fs.createWriteStream(inputFilePath))
-          .on("finish", async () => {
-            ffmpeg(inputFilePath)
-              .toFormat("mp3")
-              .on("end", async () => {
-                let buffer = fs.readFileSync(outputFilePath);
-                rell.sendMessage(
-                  m.chat,
-                  { audio: buffer, mimetype: "audio/mpeg" },
-                  { quoted: m }
-                );
-                fs.unlinkSync(inputFilePath);
-                fs.unlinkSync(outputFilePath);
+        return reply(`*Example:* ${prefix + command} https://www.youtube.com/watch?v=xxxx`);
+        const { randomUUID } = require('crypto');
+          try {
+              await ytdl.getInfo(text);
+              let a = "./trash/" + randomUUID() + ".mp3";
+              let b = await ytdl(text, {
+                  filter: "audioonly"
+              }).pipe(fs.createWriteStream(a)).on("finish", async () => {
+                  const stats = fs.statSync(a);
+                  const fileSizeInBytes = stats.size;
+                  const fileSizeInMB = fileSizeInBytes / (1024 * 1024);
+                  if (fileSizeInMB < 50) {
+                      await rell.sendMessage(m.chat, {
+                          audio: fs.readFileSync(a),
+                          mimetype: "audio/mp4",
+                          ptt: false
+                      }, { quoted: m, sendEphemeral: true })
+                  } else await rell.sendMessage(m.chat, { text: "File size exceeds 50MB limit." }, { quoted: m, sendEphemeral: true });
               })
-              .on("error", (err) => {
-                console.log(err);
-                m.reply(`*Convert Error:* ${err.message}`);
-                fs.unlinkSync(inputFilePath);
-                fs.unlinkSync(outputFilePath);
-              })
-              .save(outputFilePath);
-          });
-      } catch (e) {
-        console.log(e);
-        m.reply(`*Error:* ${e.message}`);
-      }
+              return b
+          } catch (e) {
+              m.reply("Error: " + e)
+          }
     }
     break;
   case "ytmp4":
