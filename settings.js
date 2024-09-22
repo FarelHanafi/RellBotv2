@@ -7,18 +7,18 @@ global.socialm = "GH: FarelHanafi"
 global.location = "indonesia"
 
 //global settings
-global.botname = 'Rell-MD'
-global.ownernumber = ''
-global.ownername = 'Rell'
+global.botname = 'nusa-bot'
+global.ownernumber = '+62 821-9283-4347'
+global.ownername = 'itznusa'
 global.websitex = "https://特別な人"
 global.wagc = "https://chat.whatsapp.com/JKzk65yY1b54uQujtmSQFg"
 global.themeemoji = '🪀'
-global.wm = "Rell-MD."
-global.packname = "Sticker By"
-global.author = "Rell-MD\n+62 823-3422-6291"
+global.wm = "nusa-bot."
+global.packname = "Sticker By itznusa"
+global.author = "nusa-bot\n+62 821-9283-4347"
 global.creator = "62881026950162@s.whatsapp.net"
 global.xprefix = '.'
-global.premium = ["62881026950162"]
+global.premium = ["+62 821-9283-4347"]
 global.hituet = 0
 
 global.lann = ''
